@@ -1,5 +1,8 @@
 global:
   image: node:16
+  triggers:
+    branch:
+      - main
 nosana:
   description: test
 jobs:
