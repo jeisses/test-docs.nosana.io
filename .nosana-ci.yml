@@ -1,0 +1,44 @@
+global:
+  image: node:16
+nosana:
+  description: test
+jobs:
+  - name: npm
+    image: node:16
+    commands:
+      - npm ci --cache .npm --prefer-offline
+    resources:
+      - name: node_modules
+        required: false
+      - name: .npm
+        required: false
+    artifacts:
+      - name: node_modules
+      - name: .npm
+
+  - name: test
+    image: node:16
+    commands:
+      - npm run lint
+    resources:
+      - name: node_modules
+      - name: .npm
+
+  - name: build
+    image: node:16
+    resources:
+      - name: node_modules
+      - name: .npm
+    commands:
+      - npm run generate
+      - mv dist public
+    artifacts:
+      - name: public
+
+  - name: release
+    image: node:16
+    resources:
+      - name: public
+    commands:
+      # lets just sleep for 10 seconds
+      - sleep 10
