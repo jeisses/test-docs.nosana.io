@@ -1,12 +1,13 @@
+nosana:
+  description: Test 2
+
 global:
-  image: node:16
+  image: registry.hub.docker.com/library/node:16
+
   trigger:
     branch:
-      - main
+      - all
       
-nosana:
-  description: test
-  
 jobs:
   - name: npm
     image: node:16
