@@ -2,11 +2,11 @@ global:
   image: node:16
   trigger:
     branch:
-      - master
       - main
-      - cicd
+      
 nosana:
   description: test
+  
 jobs:
   - name: npm
     image: node:16
