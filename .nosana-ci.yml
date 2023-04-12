@@ -1,6 +1,6 @@
 global:
   image: node:16
-  triggers:
+  trigger:
     branch:
       - main
 nosana:
