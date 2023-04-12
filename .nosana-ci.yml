@@ -6,7 +6,7 @@ global:
 
   trigger:
     branch:
-      - all
+      - main
       
 jobs:
   - name: npm
