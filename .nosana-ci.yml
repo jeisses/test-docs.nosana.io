@@ -1,49 +1,26 @@
 nosana:
-  description: Test 2
+  description: Run Test 2
+
 
 global:
   image: registry.hub.docker.com/library/node:16
 
   trigger:
     branch:
-      - main
-      
+      - all
+
 jobs:
-  - name: npm
-    image: node:16
-    commands:
-      - npm ci --cache .npm --prefer-offline
-    resources:
-      - name: node_modules
-        required: false
-      - name: .npm
-        required: false
+  - name: install-deps and run test
+    commands: 
+      - echo answer is $PATH path
+      - npm ci
+      - npm run test
     artifacts:
-      - name: node_modules
-      - name: .npm
-
+      - name: npm
+        path: ./node_modules
   - name: test
-    image: node:16
-    commands:
-      - npm run lint
+    commands: 
+      - ls
     resources:
-      - name: node_modules
-      - name: .npm
-
-  - name: build
-    image: node:16
-    resources:
-      - name: node_modules
-      - name: .npm
-    commands:
-      - npm run generate
-      - mv dist public
-    artifacts:
-      - name: public
-
-  - name: release
-    image: node:16
-    resources:
-      - name: public
-    commands:
-      - sleep 10
+      - name: npm
+        path: ./     
