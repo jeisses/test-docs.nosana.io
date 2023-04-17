@@ -46,5 +46,4 @@ jobs:
     resources:
       - name: public
     commands:
-      # lets just sleep for 10 seconds
       - sleep 10
